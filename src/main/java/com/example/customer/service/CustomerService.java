@@ -5,19 +5,18 @@ import com.example.customer.repository.CustomerRepository;
 
 import java.util.List;
 
-public interface CustomerService extends CustomerRepository{
-    @Override
-    void add(Customer customer);
+public interface CustomerService {
 
-    @Override
+    Customer add(Customer customer);
+
+
     Customer getById(int id);
 
-    @Override
-    List<Customer> get();
 
-    @Override
+    List<Customer> getAll();
+
+
     void update(Customer customer);
 
-    @Override
     void delete(int id);
 }

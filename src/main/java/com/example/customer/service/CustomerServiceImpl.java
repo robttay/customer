@@ -5,7 +5,6 @@ import com.example.customer.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -16,32 +15,32 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Transactional
     @Override
-    public void add(Customer customer) {
-       customerRepository.add(customer);
+    public Customer add(Customer customer) {
+        return customerRepository.save(customer);
     }
-    @Transactional
+
+    @Transactional(readOnly = true)
     @Override
     public Customer getById(int id) {
-        return customerRepository.getById(id);
+        return customerRepository.findOne(id);
     }
-    @Transactional
+
+    @Transactional(readOnly = true)
     @Override
-    public List<Customer> get() {
-        return customerRepository.get();
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
     }
+
     @Transactional
     @Override
     public void update(Customer customer) {
-        customerRepository.update(customer);
+        customerRepository.save(customer);
     }
+
     @Transactional
     @Override
     public void delete(int id) {
         customerRepository.delete(id);
-    }
-    @Override
-    public void delete(List<Integer> ids) {
-        ids.stream().forEach( id -> delete(id) );
     }
 
 
